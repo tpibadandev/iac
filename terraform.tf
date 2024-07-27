@@ -4,6 +4,6 @@ terraform {
   backend "s3" {
     key    = "github-actions-iaac-apache/terraform.tfstate" # the directory/file.tfstate
     bucket = "polyiabucket"             # the bucket
-    region = "us-east-1"             # the region
+    region = "us-west-2"             # the region
   }
 }
