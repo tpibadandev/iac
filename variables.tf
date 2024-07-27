@@ -3,7 +3,11 @@ variable "aws_region" {
   description = "AWS deployment region"
   type        = string
 }
-
+variable "name" {
+  type        = string
+  description = "The name to assign to resources in this module"
+  default     = "super-webserver"
+}
 variable "env" {
   description = "Environment Name"
   type        = string
