@@ -1,0 +1,11 @@
+#!/bin/bash -xe
+exec > >(tee /var/log/user-data.log) 2>&1
+set
+
+apt-get update
+
+apt-get --quiet --assume-yes install git binutils build-essential libssl-dev
+
+apt-get --quiet --assume-yes install apache2
+apt-get --quiet --assume-yes install ansible2
+

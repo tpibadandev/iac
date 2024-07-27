@@ -1,0 +1,91 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    # Customize these variables as needed
+    git_repo: 'https://github.com/your-repo/your-laravel-app.git'
+    app_path: '/var/www/laravel'
+    composer_path: '/usr/local/bin/composer'
+    db_host: 'localhost'
+    db_database: 'mydb'
+    db_username: 'dbuser'
+    db_password: 'dbpassword'
+  tasks:
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - git
+        - apache2
+        - php
+        - php-mysqlnd
+        - php-xml
+        - php-mbstring
+
+    - name: Start and enable Apache
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Clone Laravel repository
+      git:
+        repo: 'https://github.com/chiptranz-int/chiptranz.git'
+        dest: /var/www/laravel
+
+    - name: Download Composer
+      get_url:
+        url: https://getcomposer.org/composer-stable.phar
+        dest: /usr/local/bin/composer
+        mode: '0755'
+    - name: Install Laravel dependencies
+      command: "{{ composer_path }} install --no-dev"
+      args:
+        chdir: "{{ app_path }}"
+
+    - name: Copy environment file
+      copy:
+        src: "{{ app_path }}/.env.example"
+        dest: "{{ app_path }}/.env"
+        force: no
+
+    - name: Update environment file
+      lineinfile:
+        path: "{{ app_path }}/.env"
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      with_items:
+        - { regexp: '^DB_HOST=.*', line: "DB_HOST={{ db_host }}" }
+        - { regexp: '^DB_DATABASE=.*', line: "DB_DATABASE={{ db_database }}" }
+        - { regexp: '^DB_USERNAME=.*', line: "DB_USERNAME={{ db_username }}" }
+        - { regexp: '^DB_PASSWORD=.*', line: "DB_PASSWORD={{ db_password }}" }
+
+    - name: Generate application key
+      command: "{{ composer_path }} run-script post-root-package-install"
+      args:
+        chdir: "{{ app_path }}"
+
+    - name: Set permissions for Laravel
+      file:
+        path: "{{ item.path }}"
+        state: directory
+        owner: apache
+        group: apache
+        recurse: yes
+      with_items:
+        - { path: "{{ app_path }}/storage" }
+        - { path: "{{ app_path }}/bootstrap/cache" }
+
+    - name: Configure Apache
+      template:
+        src: apache.conf.j2
+        dest: /etc/apache2/conf.d/laravel.conf
+      notify:
+        - restart apache
+
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
