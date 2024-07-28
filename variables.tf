@@ -1,116 +1,54 @@
-# Variables
-variable "aws_region" {
-  description = "AWS deployment region"
-  type        = string
-  default     = "us-west-2"
+
+variable "server_count" {
+  type        = number
+  default     = 3
+  description = "The total number of VMs to create"
 }
+
 variable "name" {
   type        = string
   description = "The name to assign to resources in this module"
   default     = "super-webserver"
 }
-variable "env" {
-  description = "Environment Name"
+
+variable "environment" {
   type        = string
+  description = "The environment to assign to resource in this module"
   default     = "prod"
 }
 
-variable "vpc_cidr_block" {
-  description = "VPC IPv4 CIDR block"
-  type        = string
-  default = true
-}
-
-variable "public_subnet_cidr_block" {
-  description = "Public Subnet CIDR blocks"
-  type        = list(string)
-}
-
-variable "private_subnet_cidr_block" {
-  description = "Private Subnet CIDR blocks"
-  type        = list(string)
-}
-
-variable "ec2_name" {
-  description = "EC2 Web Server name"
-  type        = string
-}
-
-variable "ssh_key" {
-  description = "ssh key name"
-  type        = string
-}
-
-variable "ami" {
-  description = "AMI"
-  type        = string
+variable "tags" {
+  type        = map(any)
+  default     = {}
+  description = "Tags to asscociate to taggable resources in this module"
 }
 
 variable "instance_type" {
-  description = "instance type"
-  type        = string
+  type    = string
   default = "t2.micro"
 }
 
-variable "user_data" {
-  description = "User Data Shell script for Apache installation"
-  type        = string
-  default     = <<EOF
-#!/bin/bash
-
-# Install Apache on Ubuntu
-
-sudo apt update -y
-sudo apt install -y apache2
-sudo apt install -y mysql-client
-
-sudo systemctl start apache2
-sudo systemctl enable apache2
-EC2AZ=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
-echo '<center><h1>This Amazon EC2 instance is located in Availability Zone: AZID </h1></center>' > /var/www/html/index.txt
-sed "s/AZID/$EC2AZ/" /var/www/html/index.txt > /var/www/html/index.html
-EOF
+variable "root_volume_size" {
+  type    = string
+  default = 50
 }
 
-variable "db_allocated_storage" {
-  description = "The allocated storage in gibibytes"
-  type        = string
-  default     = 10
+variable "production" {
+  type    = bool
+  default = false
 }
 
-variable "db_name" {
-  description = "The database name"
-  type        = string
-  default = "tpipoly"
-}
+locals {
+  host = { for i in range(var.server_count) : join("-", [var.name, var.environment, i]) => {
+    index = i
+    name  = "${join("-", [var.name, var.environment, i])}"
+    }
+  }
 
-variable "db_engine" {
-  description = "The database engine to use"
-  type        = string
-  default     = "mysql"
-}
+  user_data = templatefile("${path.module}/user_data.template",
+    {
+      name        = var.name
+      environment = var.environment
+  })
 
-variable "db_engine_version" {
-  description = "The database engine version to use"
-  type        = string
-  default     = "8.0.32"
-}
-
-variable "db_instance_class" {
-  description = "The instance type of the RDS instance"
-  type        = string
-  default     = "db.t2.small"
-}
-
-variable "db_username" {
-  description = "The master username for the database"
-  type        = string
-  default     = "tpipolyadmin"
-}
-
-variable "db_password" {
-  description = "Password for the master DB user"
-  type        = string
-  sensitive   = true
-  default     = "AdminPoly0924"
 }
