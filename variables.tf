@@ -2,6 +2,7 @@
 variable "aws_region" {
   description = "AWS deployment region"
   type        = string
+  default     = "us-west-2"
 }
 variable "name" {
   type        = string
@@ -11,11 +12,13 @@ variable "name" {
 variable "env" {
   description = "Environment Name"
   type        = string
+  default     = "prod"
 }
 
 variable "vpc_cidr_block" {
   description = "VPC IPv4 CIDR block"
   type        = string
+  default = true
 }
 
 variable "public_subnet_cidr_block" {
@@ -46,6 +49,7 @@ variable "ami" {
 variable "instance_type" {
   description = "instance type"
   type        = string
+  default = "t2.micro"
 }
 
 variable "user_data" {
@@ -77,6 +81,7 @@ variable "db_allocated_storage" {
 variable "db_name" {
   description = "The database name"
   type        = string
+  default = "tpipoly"
 }
 
 variable "db_engine" {
@@ -100,10 +105,12 @@ variable "db_instance_class" {
 variable "db_username" {
   description = "The master username for the database"
   type        = string
+  default     = "tpipolyadmin"
 }
 
 variable "db_password" {
   description = "Password for the master DB user"
   type        = string
   sensitive   = true
+  default     = "AdminPoly0924"
 }
