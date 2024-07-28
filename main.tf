@@ -1,6 +1,7 @@
 # Modules
 module "create_two_tier_aws" {
-  
+  source = "./modules"
+
   env                       = var.env
   aws_region                = var.aws_region
   vpc_cidr_block            = var.vpc_cidr
