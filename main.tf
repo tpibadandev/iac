@@ -47,21 +47,12 @@ module "vpc" {
 
   # ...
 }
-module "dev_vpc" {
-  source = "./modules/environments/dev/vpc"
+module "acm" {
+  source = "./environments/dev/acm"
 
   # ...
 }
-module "alb_asg" {
-  source = "./modules/environments/dev/alb-asg"
 
-  # ...
-}
-module "ec2" {
-  source = "./modules/environments/dev"
-
-  # ...
-}
 
 
 
