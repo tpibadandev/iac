@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "rds" {
-  source                      = "../../../modules/rds"
+  source                      = "./modules/rds"
   region                      = var.region
   subnet_ids = var.subnet_ids
   db_engine                   = var.db_engine
