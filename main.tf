@@ -33,17 +33,27 @@ module "security-group" {
   # ...
 }
 module "ses" {
-  source = "./modules/ses"
+  source = "./infra/ses"
+
+  # ...
+}
+module "sg" {
+  source = "./infra/sg"
+
+  # ...
+}
+module "route53" {
+  source = "./infra/route53"
 
   # ...
 }
 module "tag-policy" {
-  source = "./modules/tag-policy"
+  source = "./infra/tag-policy"
 
   # ...
 }
 module "vpc" {
-  source = "./modules/vpc"
+  source = "./infra/vpc"
 
   # ...
 }
