@@ -23,7 +23,7 @@ module "iam-policy" {
   # ...
 }
 module "rds" {
-  source = "./modules/rds"
+  source = "./infra/rds"
 
   # ...
 }
