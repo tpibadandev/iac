@@ -18,7 +18,7 @@ module "ec2" {
 }
 
 module "iam-policy" {
-  source = "./infa/iam-policy"
+  source = "./modules/iam-policy"
 
   # ...
 }
