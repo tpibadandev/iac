@@ -44,7 +44,7 @@ module "ses" {
 }
 
 module "route53" {
-  source = "./modules/route53"
+  source = "./infra/route53"
 
   # ...
 }
