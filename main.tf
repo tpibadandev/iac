@@ -42,11 +42,7 @@ module "ses" {
 
   # ...
 }
-module "sg" {
-  source = "./infra/sg"
 
-  # ...
-}
 module "route53" {
   source = "./modules/route53"
 
