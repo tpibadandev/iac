@@ -1,6 +1,6 @@
 # Modules
 module "alb-asg" {
-  source = "./apps/alb-asg"
+  source = "./apps/alb-asg/.terraform/modules/modules.json"
 
   # ...
 }
