@@ -63,12 +63,6 @@ module "acm" {
 
   # ...
 }
-module "vars" {
-  source = "./vars/dev/"
-
-  # ...
-}
-
 
 
 
