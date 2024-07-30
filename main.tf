@@ -62,7 +62,8 @@ module "acm" {
   source = "./environments/dev/acm"
 
   # ...
-}module "vars" {
+}
+module "vars" {
   source = "./vars/dev/"
 
   # ...
