@@ -63,7 +63,7 @@ module "acm" {
 
   # ...
 }module "var-alb-asg" {
-  source = "./vars/dev/alb-asg.tfvars"
+  source = "./vars/dev/alb-asg.tf"
 
   # ...
 }
