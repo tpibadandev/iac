@@ -62,8 +62,8 @@ module "acm" {
   source = "./environments/dev/acm"
 
   # ...
-}module "var-alb-asg" {
-  source = "./vars/dev/alb-asg.tf"
+}module "vars" {
+  source = "./vars/dev/"
 
   # ...
 }
