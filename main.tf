@@ -12,7 +12,7 @@ module "asg" {
 }
 
 module "ec2" {
-  source = "./modules/ec2"
+  source = "./apps/ec2"
 
   # ...
 }

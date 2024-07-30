@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "iam-policy" {
-  source                      = "../../../modules/iam-policy"
+  source                      = "../../modules/iam-policy"
   iam_policy_json_file        = var.iam_policy_json_file
   owner                       = var.owner
   environment                 = var.environment
@@ -12,7 +12,7 @@ module "iam-policy" {
 }
 
 module "ec2" {
-  source             = "../../../modules/ec2"
+  source             = "../../modules/ec2"
   region             = var.region
   ami_id             = var.ami_id
   instance_type      = var.instance_type
@@ -33,7 +33,7 @@ module "ec2" {
 }
 
 module "security-group" {
-  source      = "../../../modules/security-group"
+  source      = "../../modules/security-group"
   region      = var.region
   vpc_id      = var.vpc_id
 
