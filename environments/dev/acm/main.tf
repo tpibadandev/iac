@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acm" {
-  source = "../../modules/acm"
+  source = "../../../../modules/acm"
   region = var.region
 
   domain_name                                 = var.domain_name
