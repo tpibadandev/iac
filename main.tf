@@ -1,6 +1,6 @@
 # Modules
-module "alb" {
-  source = "./modules/alb"
+module "alb-asg" {
+  source = "./apps/alb-asg"
 
   # ...
 }
