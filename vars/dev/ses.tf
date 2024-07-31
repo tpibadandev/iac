@@ -1,6 +1,6 @@
 #SES variables
 region            = "us-west-2"
-domain_name       = "devopsproject.dev"
+domain_name       = "thepolytechnicibadan.dev"
 dkim_record_count = 3
 zone_id           = "Z044775511DCQ7IHFO1WH"
 dkim_record_type  = "CNAME"
@@ -12,7 +12,7 @@ spf_ttl           = "300"
 
 # Tag Keys
 name        = ""
-owner       = "techiescamp"
+owner       = "polyibadan"
 environment = ""
-cost_center = "techiescamp-commerce"
+cost_center = "polyibadan-commerce"
 application = "pet-clinic"
