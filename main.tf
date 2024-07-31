@@ -102,11 +102,7 @@ cost_center = "techiescamp"
 application = "techiescamp-commerce"
   # ...
 }
-module "security-group" {
-  source = "./modules/security-group"
-      
-  # ...
-}
+
 module "ses" {
   source = "./infra/ses"
     #SES variables
