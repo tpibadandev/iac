@@ -1,14 +1,14 @@
 region = "us-west-2"
 
-domain_name                                 = "prom.devopsproject.dev"
+domain_name                                 = "test.polytechnicibadan.com"
 validation_method                           = "DNS"
 key_algorithm                               = "RSA_2048"
 certificate_transparency_logging_preference = "ENABLED"
-dns_domain_name                             = "devopsproject.dev"
+dns_domain_name                             = "polytechnicibadan.com"
 
 # Tag Keys
 name        = ""
-owner       = "techiescamp"
+owner       = "polytechnicibadan"
 environment = "dev"
-cost_center = "techiescamp-commerce"
+cost_center = "polytechnicibadan-commerce"
 application = "acm"
