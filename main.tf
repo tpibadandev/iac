@@ -1,7 +1,25 @@
 # Modules
 module "alb-asg" {
   source = "./apps/alb-asg/.terraform/modules"
-    
+    # target_group
+target_group_port              = 8080
+target_group_protocol          = "HTTP"
+target_type                    = "instance"
+load_balancing_algorithm       = "round_robin"
+
+# health_check
+health_check_path               = "/"
+health_check_port               = 8080
+health_check_protocol           = "HTTP"
+health_check_interval           = 30
+health_check_timeout            = 5
+health_check_healthy_threshold  = 2
+health_check_unhealthy_threshold= 2
+
+#alb_listener
+listener_port                   = 80
+listener_protocol               = "HTTP"
+listener_type                   = "forward"
 
   # ...
 }
