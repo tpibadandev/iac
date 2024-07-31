@@ -1,15 +1,15 @@
 # Tag Policy Vars
 region      = "us-west-2"
-policy_name = "Techiescamp"
+policy_name = "polyibadan"
 policy_type = "TAG_POLICY"
 target_id   = "814200988517"
 
 name_tag_key         = "Name"
 environment_tag_key  = "Environment"
 owner_tag_key        = "Owner"
-owner_tag_value      = ["techiescamp"]
+owner_tag_value      = ["polyibadan"]
 costcenter_tag_key   = "CostCenter"
-costcenter_tag_value = ["techiescamp-commerce"]
+costcenter_tag_value = ["polyibadan-commerce"]
 application_tag_key  = "Application"
 enforce_for_values = ["dynamodb:*", "ec2:dhcp-options", "ec2:elastic-ip", "ec2:fpga-image", "ec2:instance",
   "ec2:internet-gateway", "ec2:launch-template", "ec2:natgateway", "ec2:network-acl",
