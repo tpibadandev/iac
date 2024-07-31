@@ -63,11 +63,7 @@ egress_security_group_ids = ["sg-0fe4363da3994c100"]
   # ...
 }
 
-module "iam-policy" {
-  source = "./modules/iam-policy"
 
-  # ...
-}
 module "rds" {
   source = "./infra/rds"
   # Network Vars
