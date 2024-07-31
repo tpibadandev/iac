@@ -6,17 +6,6 @@ module "alb-asg" {
   # ...
 }
 
-module "asg" {
-  source = "./modules/asg"
-    
-  # ...
-}
-module "alb" {
-  source = "./modules/alb"
-
-  # ...
-
-}
 
 module "ec2" {
   source = "./apps/ec2"
