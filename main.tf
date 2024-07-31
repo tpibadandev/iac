@@ -1,6 +1,6 @@
 # Modules
 module "alb-asg" {
-  source = "./apps/alb-asg/terra/modules/modules.json"
+  source = "./apps/alb-asg/terra/modules"
     
 
   # ...
