@@ -18,14 +18,14 @@ ami_id         = "ami-0e8ffa060937e44c7"
 instance_type  = "t2.micro"
 key_name       = "polyibadan"
 instance_count = 1
-subnet_ids     = aws_subnet.app.*.id
+subnet_ids     = ["subnet-034b5b81e1ee5e653", "subnet-0bfbbe8efe880be15", "subnet-059ad803aa3c5d9c5"]
 associate_public_ip_address = true
 attach_instance_profile     = true
 attach_eip                  = false
 storage_size                = 30
 
 # EC2 Security Group Variables
-vpc_id  = aws_vpc.main.id
+vpc_id  = "vpc-062e91b98392ca9a2"
 
 # Tag Keys
 owner       = "polyibadan"
@@ -68,7 +68,7 @@ module "rds" {
   source = "./infra/rds"
   # Network Vars
 region              = "us-west-2"
-subnet_ids          = aws_subnet.db.*.id
+subnet_ids          = ["subnet-058a7514ba8adbb07", "subnet-0dbcd1ac168414927", "subnet-032f5077729435858"]
 multi_az            = false
 publicly_accessible = true
 
