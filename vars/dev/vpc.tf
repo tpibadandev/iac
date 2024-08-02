@@ -15,10 +15,10 @@ create_nat_gateway = true
 destination_cidr_block = "0.0.0.0/0"
 
 #tags
-owner       = "techiescamp"
+owner       = "polyibadan"
 environment = "dev"
-cost_center = "techiescamp-commerce"
-application = "ecommerce"
+cost_center = "polyibadan-portal"
+application = "portal"
 
 
 map_public_ip_on_launch       = true

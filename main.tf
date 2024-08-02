@@ -16,22 +16,22 @@ iam_policy_json_file        = "ec2.json"
 region         = "us-west-2"
 ami_id         = "ami-0e8ffa060937e44c7"
 instance_type  = "t2.micro"
-key_name       = "techiescamp"
+key_name       = "polyibadan"
 instance_count = 1
-subnet_ids     = ["subnet-034b5b81e1ee5e653", "subnet-0bfbbe8efe880be15", "subnet-059ad803aa3c5d9c5"]
+subnet_ids     = aws_subnet.app.*.id
 associate_public_ip_address = true
 attach_instance_profile     = true
 attach_eip                  = false
 storage_size                = 30
 
 # EC2 Security Group Variables
-vpc_id  = "vpc-062e91b98392ca9a2"
+vpc_id  = aws_vpc.main.id
 
 # Tag Keys
-owner       = "techiescamp"
+owner       = "polyibadan"
 environment = "test"
-cost_center = "techiescamp-commerce"
-application = "jenkins-agent"
+cost_center = "polyibadan-portal"
+application = "test-agent"
 
 # CIDR Ingress Variables
 create_ingress_cidr    = true
@@ -68,14 +68,14 @@ module "rds" {
   source = "./infra/rds"
   # Network Vars
 region              = "us-west-2"
-subnet_ids          = ["subnet-058a7514ba8adbb07", "subnet-0dbcd1ac168414927", "subnet-032f5077729435858"]
+subnet_ids          = aws_subnet.db.*.id
 multi_az            = false
 publicly_accessible = true
 
 # DB Vars
 db_engine                   = "mysql"
 db_storage_type             = "gp2"
-db_username                 = "techiescamp"
+db_username                 = "polyibadan"
 db_instance_class           = "db.t2.micro"
 db_storage_size             = 20
 set_secret_manager_password = true
@@ -96,10 +96,10 @@ skip_final_snapshot      = true
 apply_immediately        = true
 
 # Tag Vars
-owner       = "techiescamp-devops"
+owner       = "polyibadan-devops"
 environment = "dev"
-cost_center = "techiescamp"
-application = "techiescamp-commerce"
+cost_center = "polyibadan"
+application = "polyibadan-portal"
   # ...
 }
 
@@ -121,8 +121,8 @@ spf_ttl           = "300"
 name        = ""
 owner       = "polyibadan"
 environment = ""
-cost_center = "polyibadan-commerce"
-application = "pet-clinic"
+cost_center = "polyibadan-portal"
+application = "portal"
   # ...
 }
 
@@ -136,7 +136,7 @@ dns_domain_name = "thepolytechnicibadan.dev"
 name        = ""
 owner       = "polyibadan"
 environment = "dev"
-cost_center = "polyibadan-commerce"
+cost_center = "polyibadan-portal"
 application = "route53"
   # ...
 }
@@ -144,16 +144,16 @@ module "tag-policy" {
   source = "./infra/tag-policy"
   # Tag Policy Vars
 region      = "us-west-2"
-policy_name = "Techiescamp"
+policy_name = "polyibadan"
 policy_type = "TAG_POLICY"
 target_id   = "814200988517"
 
 name_tag_key         = "Name"
 environment_tag_key  = "Environment"
 owner_tag_key        = "Owner"
-owner_tag_value      = ["techiescamp"]
+owner_tag_value      = ["polyibadan"]
 costcenter_tag_key   = "CostCenter"
-costcenter_tag_value = ["techiescamp-commerce"]
+costcenter_tag_value = ["polyibadan-portal"]
 application_tag_key  = "Application"
 enforce_for_values = ["dynamodb:*", "ec2:dhcp-options", "ec2:elastic-ip", "ec2:fpga-image", "ec2:instance",
   "ec2:internet-gateway", "ec2:launch-template", "ec2:natgateway", "ec2:network-acl",
@@ -185,10 +185,10 @@ create_nat_gateway = true
 destination_cidr_block = "0.0.0.0/0"
 
 #tags
-owner       = "techiescamp"
+owner       = "polyibadan"
 environment = "dev"
-cost_center = "techiescamp-commerce"
-application = "ecommerce"
+cost_center = "polyibadan-portal"
+application = "portal"
 
 
 map_public_ip_on_launch       = true
@@ -300,7 +300,7 @@ dns_domain_name                             = "polytechnicibadan.com"
 name        = ""
 owner       = "polytechnicibadan"
 environment = "dev"
-cost_center = "polytechnicibadan-commerce"
+cost_center = "polytechnicibadan-portal"
 application = "acm"
 
 

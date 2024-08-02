@@ -7,7 +7,7 @@ publicly_accessible         = true
 # DB Vars
 db_engine                   = "mysql"
 db_storage_type             = "gp2"
-db_username                 = "techiescamp"
+db_username                 = "polyibadan"
 db_instance_class           = "db.t2.micro"
 db_storage_size             = 20
 set_secret_manager_password = true
@@ -28,7 +28,7 @@ skip_final_snapshot         = true
 apply_immediately           = true
 
 # Tag Vars
-owner                       = "techiescamp-devops"
+owner                       = "polyibadan-devops"
 environment                 = "dev"
-cost_center                 = "techiescamp"
-application                 = "techiescamp-commerce"
+cost_center                 = "polyibadan"
+application                 = "polyibadan-portal"
